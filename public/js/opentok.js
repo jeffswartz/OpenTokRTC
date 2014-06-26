@@ -16262,10 +16262,23 @@ OTHelpers.centerElement = function(element, width, height) {
  *  For more information on sessions and session IDs, see
  * <a href="/opentok/tutorials/create-session/">Session creation</a>.
  */
-  OT.Session = function(apiKey, sessionId) {
+  OT.Session = function(apiKey, sessionId, options) {
     // Check that the client meets the minimum requirements, if they don't the upgrade
     // flow will be triggered.
     if (!OT.checkSystemRequirements()) {
+      if (options && options.token) {
+        var queryString = "apk="+ encodeURIComponent(apiKey)
+          + "&sid="+ encodeURIComponent(sessionId)
+          + "&tkn="+ encodeURIComponent(options.token);
+        if (options.redirectUrl) queryString += "&rurl=" + options.redirectUrl;
+        if (options.logoUrl) queryString += "&logo=" + logoUrl;
+        if (options.roomName) queryString += "&room=" + roomName;
+        if (options.publisherName) queryString += + "&pname=" + publisherName;
+        var otExtensionUrl = "otvideo://start?" + queryString;
+        window.location = otExtensionUrl;
+        return;
+      }
+
       OT.upgradeSystemRequirements();
       return;
     }
