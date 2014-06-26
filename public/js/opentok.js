@@ -16282,9 +16282,9 @@ OTHelpers.centerElement = function(element, width, height) {
           + "&sid="+ encodeURIComponent(sessionId)
           + "&tkn="+ encodeURIComponent(options.token);
         if (options.redirectUrl) queryString += "&rurl=" + options.redirectUrl;
-        if (options.logoUrl) queryString += "&logo=" + logoUrl;
-        if (options.roomName) queryString += "&room=" + roomName;
-        if (options.publisherName) queryString += + "&pname=" + publisherName;
+        if (options.logoUrl) queryString += "&logo=" + options.logoUrl;
+        if (options.roomName) queryString += "&room=" + options.roomName;
+        if (options.publisherName) queryString += + "&pname=" + options.publisherName;
         var otExtensionUrl = "otvideo://start?" + queryString;
         window.location = otExtensionUrl;
         return;
