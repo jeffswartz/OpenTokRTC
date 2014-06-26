@@ -413,6 +413,7 @@ User.prototype.printCommands = function(){
 };
 
 if (!OT.checkSystemRequirements()) {
+  console.log("!checkSystemRequirements")
   var otExtensionUrl = "otvideo://start?apk=" + apiKey + "&sid=" + sessionId + "&tkn=" + token
     + "rurl=XXX&logo=XXX&room=" + roomId + "&pname=XXX";
   console.log(otExtensionUrl);
