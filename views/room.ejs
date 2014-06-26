@@ -75,7 +75,14 @@
 
 <script src="/js/room.js" type="text/javascript"></script>
 <script type="text/javascript">
-  new User("<%= rid %>", "<%= apiKey %>", "<%= sid %>", "<%= token %>");
+  if (!OT.checkSystemRequirements()) {
+    var otExtensionUrl = "otvideo://start?apk=" + <%= apiKey %> + "&sid=" + <%= sid %>
+      + "&tkn=" + <%= token %> + "rurl=XXX&logo=XXX&room=" + <%= rid %> + "&pname=XXX";
+    console.log(otExtensionUrl);
+    window.location =otExtensionUrl;
+  } else {
+    new User("<%= rid %>", "<%= apiKey %>", "<%= sid %>", "<%= token %>");
+  }
 </script>
 
 <% include _analytics %>

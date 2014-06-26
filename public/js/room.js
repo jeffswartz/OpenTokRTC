@@ -412,15 +412,7 @@ User.prototype.printCommands = function(){
     $(".chatMessage:contains('Welcome to OpenTokRTC')").find('em').css("color", "#000");
 };
 
-if (!OT.checkSystemRequirements()) {
-  console.log("!checkSystemRequirements")
-  var otExtensionUrl = "otvideo://start?apk=" + apiKey + "&sid=" + sessionId + "&tkn=" + token
-    + "rurl=XXX&logo=XXX&room=" + roomId + "&pname=XXX";
-  console.log(otExtensionUrl);
-  window.location =otExtensionUrl;
-} else {
-  window.User = User;
-}
+window.User = User;
 
 function applyHackathonWorkarounds() {
   OT.$.supportsWebRTC = function() {
