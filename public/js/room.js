@@ -41,26 +41,28 @@ function User(roomId, apiKey, sessionId, token){
       publisherName: "Jeff"
     }
   this.session = OT.initSession( this.apiKey, this.sessionId, sessionOptions);
-  this.session.on({
-    "sessionDisconnected": this.sessionDisconnected,
-    "streamCreated": this.streamCreated,
-    "streamDestroyed": this.streamDestroyed,
-    "connectionCreated": this.connectionCreated,
-    "connectionDestroyed": this.connectionDestroyed,
-    "signal": this.signalReceived
-  }, this);
-  this.session.connect(this.token,function(err){
-    if( err ){
-      alert("Unable to connect to session. Sorry");
-      return;
-    }
-    self.myConnectionId = self.session.connection.connectionId;
-    self.name = "Guest-"+self.myConnectionId.substring( self.myConnectionId.length - 8, self.myConnectionId.length );
-    self.allUsers[ self.myConnectionId ] = self.name;
-    self.session.publish( self.publisher );
-    self.layout();
-    $("#messageInput").removeAttr( "disabled" );
-  });
+  if (this.session) {
+    this.session.on({
+      "sessionDisconnected": this.sessionDisconnected,
+      "streamCreated": this.streamCreated,
+      "streamDestroyed": this.streamDestroyed,
+      "connectionCreated": this.connectionCreated,
+      "connectionDestroyed": this.connectionDestroyed,
+      "signal": this.signalReceived
+    }, this);
+    this.session.connect(this.token,function(err){
+      if( err ){
+        alert("Unable to connect to session. Sorry");
+        return;
+      }
+      self.myConnectionId = self.session.connection.connectionId;
+      self.name = "Guest-"+self.myConnectionId.substring( self.myConnectionId.length - 8, self.myConnectionId.length );
+      self.allUsers[ self.myConnectionId ] = self.name;
+      self.session.publish( self.publisher );
+      self.layout();
+      $("#messageInput").removeAttr( "disabled" );
+    });
+  }
 
   // add event listeners to dom
   $(".headerOption").click(function(){ // Header to select between filters and commands
