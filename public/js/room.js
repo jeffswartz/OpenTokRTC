@@ -34,7 +34,7 @@ function User(roomId, apiKey, sessionId, token){
   //applyHackathonWorkarounds();
   sessionOptions =
     {
-      token = this.token;
+      token = this.token,
       redirectUrl = "http://www.example.com",
       logoUrl = "http://www.example.com",
       roomName = "FooRoom",
