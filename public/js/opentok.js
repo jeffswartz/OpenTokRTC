@@ -4897,6 +4897,7 @@ OTHelpers.centerElement = function(element, width, height) {
     }
 
     var publisher = new OT.Publisher();
+    if (!publisher) return;
     OT.publishers.add(publisher);
 
     var triggerCallback = function triggerCallback (err) {
