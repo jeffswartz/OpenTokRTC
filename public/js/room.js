@@ -42,7 +42,7 @@ function User(roomId, apiKey, sessionId, token){
   }
   var session;
   function connectToSession() {
-    this.session = OT.initSession( this.apiKey, this.sessionId );
+    this.session = OT.initSession( apiKey, sessionId );
     this.session.on({
       "sessionDisconnected": this.sessionDisconnected,
       "streamCreated": this.streamCreated,
@@ -51,7 +51,7 @@ function User(roomId, apiKey, sessionId, token){
       "connectionDestroyed": this.connectionDestroyed,
       "signal": this.signalReceived
     }, this);
-    this.session.connect(this.token,function(err){
+    this.session.connect(token,function(err){
       if( err ){
         alert("Unable to connect to session. Sorry");
         return;
