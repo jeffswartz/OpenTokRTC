@@ -42,16 +42,16 @@ function User(roomId, apiKey, sessionId, token){
   }
   var session;
   function connectToSession() {
-    this.session = OT.initSession( this.apiKey, this.sessionId );
-    this.session.on({
-      "sessionDisconnected": this.sessionDisconnected,
-      "streamCreated": this.streamCreated,
-      "streamDestroyed": this.streamDestroyed,
-      "connectionCreated": this.connectionCreated,
-      "connectionDestroyed": this.connectionDestroyed,
-      "signal": this.signalReceived
+    session = OT.initSession( apiKey, sessionId );
+    session.on({
+      "sessionDisconnected": sessionDisconnected,
+      "streamCreated": streamCreated,
+      "streamDestroyed": streamDestroyed,
+      "connectionCreated": connectionCreated,
+      "connectionDestroyed": connectionDestroyed,
+      "signal": signalReceived
     }, this);
-    this.session.connect(this.token,function(err){
+    session.connect(token,function(err){
       if( err ){
         alert("Unable to connect to session. Sorry");
         return;
@@ -313,7 +313,7 @@ User.prototype.sendSignal = function( type, data, to ){
   if(to){
     signalData.to = to;
   }
-  this.session.signal( signalData, this.errorSignal );
+  session.signal( signalData, this.errorSignal );
 };
 
 User.prototype.setLeaderProperties = function( e ){
