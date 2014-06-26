@@ -14053,7 +14053,7 @@ OTHelpers.centerElement = function(element, width, height) {
     // Check that the client meets the minimum requirements, if they don't the upgrade
     // flow will be triggered.
     if (!OT.checkSystemRequirements()) {
-      OT.upgradeSystemRequirements();
+   //   OT.upgradeSystemRequirements();
       return;
     }
 
