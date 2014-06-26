@@ -34,11 +34,11 @@ function User(roomId, apiKey, sessionId, token){
   //applyHackathonWorkarounds();
   sessionOptions =
     {
-      token = this.token,
-      redirectUrl = "http://www.example.com",
-      logoUrl = "http://www.example.com",
-      roomName = "FooRoom",
-      publisherName = "Jeff"
+      token: this.token,
+      redirectUrl: "http://www.example.com",
+      logoUrl: "http://www.example.com",
+      roomName: "FooRoom",
+      publisherName: "Jeff"
     }
   this.session = OT.initSession( this.apiKey, this.sessionId, sessionOptions);
   this.session.on({
