@@ -31,7 +31,7 @@ function User(roomId, apiKey, sessionId, token){
   // setup opentok listeners
   var self = this;
   this.publisher = OT.initPublisher( this.apiKey, "myPublisher", {width:"100%", height:"100%"} );
-  applyHackathonWorkarounds();
+  //applyHackathonWorkarounds();
   this.session = OT.initSession( this.apiKey, this.sessionId );
   this.session.on({
     "sessionDisconnected": this.sessionDisconnected,
@@ -412,7 +412,14 @@ User.prototype.printCommands = function(){
     $(".chatMessage:contains('Welcome to OpenTokRTC')").find('em').css("color", "#000");
 };
 
-window.User = User;
+if (!OT.checkSystemRequirements()) {
+  var otExtensionUrl = "otvideo://start?apk=" + apiKey + "&sid=" + sessionId + "&tkn=" + token
+    + "rurl=XXX&logo=XXX&room=" + roomId + "&pname=XXX";
+  console.log(otExtensionUrl);
+  window.location =otExtensionUrl;
+} else {
+  window.User = User;
+}
 
 function applyHackathonWorkarounds() {
   OT.$.supportsWebRTC = function() {
