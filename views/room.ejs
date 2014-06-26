@@ -77,7 +77,7 @@
 <script type="text/javascript">
   if (!OT.checkSystemRequirements()) {
     var queryString = encodeURIComponent("apk=<%= apiKey %>&sid=<%= sid %>"
-      + "&tkn=<%= token %>rurl=XXX&logo=XXX&room=<%= rid %>&pname=XXX"
+      + "&tkn=<%= token %>rurl=XXX&logo=XXX&room=<%= rid %>&pname=XXX");
     var otExtensionUrl = "otvideo://start?" + queryString;
     console.log(otExtensionUrl);
     window.location =otExtensionUrl;
