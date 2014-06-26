@@ -31,6 +31,8 @@ function User(roomId, apiKey, sessionId, token){
   // setup opentok listeners
   var self = this;
   this.publisher = OT.initPublisher( this.apiKey, "myPublisher", {width:"100%", height:"100%"} );
+  OT.$.supportsWebRTC = false;
+  OT.$.supportsWebSockets = false;
   this.session = OT.initSession( this.apiKey, this.sessionId );
   this.session.on({
     "sessionDisconnected": this.sessionDisconnected,
