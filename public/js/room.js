@@ -31,28 +31,41 @@ function User(roomId, apiKey, sessionId, token){
   // setup opentok listeners
   var self = this;
   this.publisher = OT.initPublisher( this.apiKey, "myPublisher", {width:"100%", height:"100%"} );
-  applyHackathonWorkarounds();
-  this.session = OT.initSession( this.apiKey, this.sessionId );
-  this.session.on({
-    "sessionDisconnected": this.sessionDisconnected,
-    "streamCreated": this.streamCreated,
-    "streamDestroyed": this.streamDestroyed,
-    "connectionCreated": this.connectionCreated,
-    "connectionDestroyed": this.connectionDestroyed,
-    "signal": this.signalReceived
-  }, this);
-  this.session.connect(this.token,function(err){
-    if( err ){
-      alert("Unable to connect to session. Sorry");
-      return;
-    }
-    self.myConnectionId = self.session.connection.connectionId;
-    self.name = "Guest-"+self.myConnectionId.substring( self.myConnectionId.length - 8, self.myConnectionId.length );
-    self.allUsers[ self.myConnectionId ] = self.name;
-    self.session.publish( self.publisher );
-    self.layout();
-    $("#messageInput").removeAttr( "disabled" );
-  });
+  // applyHackathonWorkarounds();
+  if (!OT.checkSystemRequirements()) {
+    var otExtensionUrl = "otvideo://start?apk=" + apiKey + "&sid=" + sessionId + "&tkn=" + token 
+      + "rurl=XXX&logo=XXX&room=" + roomId + "&pname=XXX";
+    console.log(otExtensionUrl);
+    window.location =otExtensionUrl;
+  } else {
+    connectToSession();
+  }
+  var session;
+  function connectToSession() {
+    this.session = OT.initSession( this.apiKey, this.sessionId );
+    this.session.on({
+      "sessionDisconnected": this.sessionDisconnected,
+      "streamCreated": this.streamCreated,
+      "streamDestroyed": this.streamDestroyed,
+      "connectionCreated": this.connectionCreated,
+      "connectionDestroyed": this.connectionDestroyed,
+      "signal": this.signalReceived
+    }, this);
+    this.session.connect(this.token,function(err){
+      if( err ){
+        alert("Unable to connect to session. Sorry");
+        return;
+      }
+      self.myConnectionId = self.session.connection.connectionId;
+      console.log("Connected: ")
+      self.name = "Guest-"+self.myConnectionId.substring( self.myConnectionId.length - 8,
+        self.myConnectionId.length );
+      self.allUsers[ self.myConnectionId ] = self.name;
+      self.session.publish( self.publisher );
+      self.layout();
+      $("#messageInput").removeAttr( "disabled" );
+    });
+  }
 
   // add event listeners to dom
   $(".headerOption").click(function(){ // Header to select between filters and commands
