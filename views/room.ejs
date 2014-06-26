@@ -76,11 +76,10 @@
 <script src="/js/room.js" type="text/javascript"></script>
 <script type="text/javascript">
   if (!OT.checkSystemRequirements()) {
-    var queryString = encodeURIComponent("apk=<%= apiKey %>&sid=<%= sid %>"
-      + "&tkn=<%= token %>rurl=XXX&logo=XXX&room=<%= rid %>&pname=XXX");
+    var queryString = encodeURIComponent("apk=<%= apiKey %>&sid=<%= sid %>&tkn=<%= token %>rurl=XXX&logo=XXX&room=<%= rid %>&pname=XXX");
     var otExtensionUrl = "otvideo://start?" + queryString;
     console.log(otExtensionUrl);
-    window.location =otExtensionUrl;
+    window.location = otExtensionUrl;
   } else {
     new User("<%= rid %>", "<%= apiKey %>", "<%= sid %>", "<%= token %>");
   }
