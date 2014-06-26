@@ -5389,6 +5389,7 @@ OTHelpers.centerElement = function(element, width, height) {
 
       _byId[id] = _models.push(model) - 1;
 
+      if (!onModelUpdate || !onModelDestroy) return;
       model.on('updated', onModelUpdate, this);
       model.on('destroyed', onModelDestroy, this);
 
