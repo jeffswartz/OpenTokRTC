@@ -4674,7 +4674,7 @@ OTHelpers.centerElement = function(element, width, height) {
 * @returns {Session} The session object through which all further interactions with
 * the session will occur.
 */
-  OT.initSession = function(apiKey, sessionId) {
+  OT.initSession = function(apiKey, sessionId, options) {
 
     if(sessionId == null) {
       sessionId = apiKey;
@@ -4684,7 +4684,7 @@ OTHelpers.centerElement = function(element, width, height) {
     var session = OT.sessions.get(sessionId);
 
     if (!session) {
-      session = new OT.Session(apiKey, sessionId);
+      session = new OT.Session(apiKey, sessionId, options);
       if (session) {
         OT.sessions.add(session);
       }

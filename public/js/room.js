@@ -32,7 +32,7 @@ function User(roomId, apiKey, sessionId, token){
   var self = this;
   this.publisher = OT.initPublisher( this.apiKey, "myPublisher", {width:"100%", height:"100%"} );
   //applyHackathonWorkarounds();
-  sessionOptions =
+  var sessionOptions =
     {
       token: this.token,
       redirectUrl: "http://www.example.com",
