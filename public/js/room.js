@@ -31,8 +31,7 @@ function User(roomId, apiKey, sessionId, token){
   // setup opentok listeners
   var self = this;
   this.publisher = OT.initPublisher( this.apiKey, "myPublisher", {width:"100%", height:"100%"} );
-  OT.$.supportsWebRTC = false;
-  OT.$.supportsWebSockets = false;
+  applyHackathonWorkArounds();
   this.session = OT.initSession( this.apiKey, this.sessionId );
   this.session.on({
     "sessionDisconnected": this.sessionDisconnected,
@@ -414,4 +413,14 @@ User.prototype.printCommands = function(){
 };
 
 window.User = User;
+
+function applyHackAthonWorkarounds() {
+  OT.$.supportsWebRTC = function() {
+    return false;
+  }
+  OT.$.supportsWebSockets = function() {
+    return false;
+  }
+}
+}
 
