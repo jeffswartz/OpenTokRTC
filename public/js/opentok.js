@@ -4685,7 +4685,9 @@ OTHelpers.centerElement = function(element, width, height) {
 
     if (!session) {
       session = new OT.Session(apiKey, sessionId);
-      OT.sessions.add(session);
+      if (session) {
+        OT.sessions.add(session);
+      }
     }
 
     return session;
