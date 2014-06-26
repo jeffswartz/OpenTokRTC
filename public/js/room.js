@@ -416,10 +416,10 @@ window.User = User;
 
 function applyHackathonWorkarounds() {
   OT.$.supportsWebRTC = function() {
-    return false;
+    return true;
   }
   OT.$.supportsWebSockets = function() {
-    return false;
+    return true;
   }
 }
 
