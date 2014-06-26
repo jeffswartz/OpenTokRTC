@@ -421,5 +421,8 @@ function applyHackathonWorkarounds() {
   OT.$.supportsWebSockets = function() {
     return true;
   }
+  OT.checkSystemRequirements = function() {
+    return true;
+  }
 }
 
