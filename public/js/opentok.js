@@ -4922,12 +4922,16 @@ OTHelpers.centerElement = function(element, width, height) {
     };
 
 
-    publisher.once('initSuccess', removeInitSuccessAndCallComplete);
-    publisher.once('publishComplete', removeHandlersAndCallComplete);
+    if (!OT.checkSystemRequirements()) {
+      return;
+    } else {
+      publisher.once('initSuccess', removeInitSuccessAndCallComplete);
+      publisher.once('publishComplete', removeHandlersAndCallComplete);
 
-    publisher.publish(targetElement, properties);
+      publisher.publish(targetElement, properties);
 
-    return publisher;
+      return publisher;
+    }
   };
 
 
