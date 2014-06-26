@@ -5390,14 +5390,17 @@ OTHelpers.centerElement = function(element, width, height) {
 
       _byId[id] = _models.push(model) - 1;
 
-      if (!OT.checkSystemRequirements()) return;
-      model.on('updated', onModelUpdate, this);
-      model.on('destroyed', onModelDestroy, this);
+      if (!OT.checkSystemRequirements()) {
+        return;
+      } else {
+        model.on('updated', onModelUpdate, this);
+        model.on('destroyed', onModelDestroy, this);
 
-      this.trigger('add', model);
-      this.trigger('add:'+id, model);
+        this.trigger('add', model);
+        this.trigger('add:'+id, model);
 
-      return this;
+        return this;
+      }
     };
 
     this.remove = function(model, reason) {
