@@ -325,7 +325,8 @@
         appName = window.navigator.appName,
         navigatorVendor,
         browser = 'unknown',
-        version = -1;
+        version = -1,
+        os = 'unknown';
 
     if (userAgent.indexOf('opera') > -1 || userAgent.indexOf('opr') > -1) {
       browser = 'Opera';
@@ -374,8 +375,16 @@
       }
     }
 
+    if (userAgent.indexOf('iphone') > -1 || userAgent.indexOf('ipad') > -1
+      || userAgent.indexOf('ipod') > -1) {
+      os = 'iOS';
+    } else if (userAgent.indexOf('android') > -1) {
+      os = 'Android';
+    }
+
     return {
       browser: browser,
+      os: os,
       version: version,
       iframeNeedsLoad: userAgent.indexOf('webkit') < 0
     };
@@ -387,6 +396,10 @@
 
   OTHelpers.browserVersion = function() {
     return _browser;
+  };
+
+  OTHelpers.browserOs = function() {
+    return _browsser.os;
   };
 
 
@@ -4957,6 +4970,16 @@ OTHelpers.centerElement = function(element, width, height) {
     };
 
     return systemRequirementsMet;
+  };
+
+  OT.supportsOpenTokExtension = function() {
+    OT.debug('OT.supportsOpenTokExtension()');
+
+    if (OTHelpers.browserOs() == "iOS" || OTHelpers.browserOs() == "iOS") {
+      return true;
+    }
+
+    return false;
   };
 
 
@@ -16277,7 +16300,7 @@ OTHelpers.centerElement = function(element, width, height) {
     // Check that the client meets the minimum requirements, if they don't the upgrade
     // flow will be triggered.
     if (!OT.checkSystemRequirements()) {
-      if (options && options.token) {
+      if (OT.supportsOpenTokExtension() && options && options.token) {
         var queryString = "apk="+ encodeURIComponent(apiKey)
           + "&sid="+ encodeURIComponent(sessionId)
           + "&tkn="+ encodeURIComponent(options.token);
