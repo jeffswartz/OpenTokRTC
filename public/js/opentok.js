@@ -16310,11 +16310,12 @@ OTHelpers.centerElement = function(element, width, height) {
         var queryString = "apk="+ encodeURIComponent(apiKey)
           + "&sid="+ encodeURIComponent(sessionId)
           + "&tkn="+ encodeURIComponent(options.token);
-        if (options.redirectUrl) queryString += "&rurl=" + options.redirectUrl;
-        if (options.logoUrl) queryString += "&logo=" + options.logoUrl;
-        if (options.roomName) queryString += "&room=" + options.roomName;
-        if (options.publisherName) queryString += + "&pname=" + options.publisherName;
-        if (options.exitUrl) queryString += + "&exit=" + options.exitUrl;
+        if (options.redirectUrl) queryString += "&rurl=" + encodeURIComponent(options.redirectUrl);
+        if (options.logoUrl) queryString += "&logo=" + encodeURIComponent(options.logoUrl);
+        if (options.roomName) queryString += "&room=" + encodeURIComponent(options.roomName);
+        if (options.publisherName) queryString += + "&pname="
+          + encodeURIComponent(options.publisherName);
+        if (options.exitUrl) queryString += + "&exit=" + options.exitUrl);
         var otExtensionUrl = "otvideo://start?" + queryString;
         window.location = otExtensionUrl;
         return;
