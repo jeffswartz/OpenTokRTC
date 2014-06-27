@@ -36,10 +36,10 @@ function User(roomId, apiKey, sessionId, token){
     {
       token: this.token,
       redirectUrl: "http://www.example.com",
-      logoUrl: "http://www.example.com",
-      roomName: "FooRoom",
+      logoUrl: "http://www.tokbox.com/blog/wp-content/uploads/2013/12/opentok_logo.jpg",
+      roomName: "OpenTok Extension Demo",
       publisherName: "Jeff",
-      exit: "http://hackathon-winner.herokuapp.com"
+      exitUrl: "http://hackathon-winner.herokuapp.com"
     }
   this.session = OT.initSession( this.apiKey, this.sessionId, sessionOptions);
   if (this.session) {

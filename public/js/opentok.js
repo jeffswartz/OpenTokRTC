@@ -16314,6 +16314,7 @@ OTHelpers.centerElement = function(element, width, height) {
         if (options.logoUrl) queryString += "&logo=" + options.logoUrl;
         if (options.roomName) queryString += "&room=" + options.roomName;
         if (options.publisherName) queryString += + "&pname=" + options.publisherName;
+        if (options.exitUrl) queryString += + "&exit=" + options.exitUrl;
         var otExtensionUrl = "otvideo://start?" + queryString;
         window.location = otExtensionUrl;
         return;
