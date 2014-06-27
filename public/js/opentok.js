@@ -4975,7 +4975,13 @@ OTHelpers.centerElement = function(element, width, height) {
   OT.supportsOpenTokExtension = function() {
     OT.debug('OT.supportsOpenTokExtension()');
 
-    if (OTHelpers.browserOs() == "iOS" || OTHelpers.browserOs() == "iOS") {
+  //  if (OTHelpers.browserOs() == "iOS" || OTHelpers.browserOs() == "Android") {
+    if (window.navigator.userAgent.toLowerCase().indexOf('iphone')
+        || window.navigator.userAgent.toLowerCase().indexOf('ipad') > - 1
+        || window.navigator.userAgent.toLowerCase().indexOf('ipod') > - 1
+        || window.navigator.userAgent.toLowerCase().indexOf('android') > - 1
+      )
+    {
       return true;
     }
 
