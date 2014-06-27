@@ -38,7 +38,8 @@ function User(roomId, apiKey, sessionId, token){
       redirectUrl: "http://www.example.com",
       logoUrl: "http://www.example.com",
       roomName: "FooRoom",
-      publisherName: "Jeff"
+      publisherName: "Jeff",
+      exit: "http://hackathon-winner.herokuapp.com"
     }
   this.session = OT.initSession( this.apiKey, this.sessionId, sessionOptions);
   if (this.session) {
