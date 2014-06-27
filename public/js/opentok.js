@@ -16316,9 +16316,9 @@ OTHelpers.centerElement = function(element, width, height) {
         if (options.redirectUrl) queryString += "&rurl=" + encodeURIComponent(options.redirectUrl);
         if (options.logoUrl) queryString += "&logo=" + encodeURIComponent(options.logoUrl);
         if (options.roomName) queryString += "&room=" + encodeURIComponent(options.roomName);
-        if (options.publisherName) queryString += + "&pname="
+        if (options.publisherName) queryString += "&pname="
           + encodeURIComponent(options.publisherName);
-        if (options.exitUrl) queryString += + "&exit=" + encodeURIComponent(options.exitUrl);
+        if (options.exitUrl) queryString += "&exit=" + encodeURIComponent(options.exitUrl);
         var otExtensionUrl = "otvideo://start?" + queryString;
         window.location = otExtensionUrl;
         return;
